@@ -1,3 +1,5 @@
+ 
+
 
 # OpenAI Services Integration in C#
 
@@ -80,6 +82,73 @@ static async Task Main(string[] args)
    Install-Package Newtonsoft.Json
    ```
 3. Replace `<YOUR API KEY>` with your actual OpenAI API key in the `Main` method.
+
+ 
+
+###OpenAIImageGenerator Usage
+ 
+#### 🚀 Function: `GenerateImageAsync`
+- **Summary**: Generates an image based on a text description using OpenAI's image generation API.
+- **Details**: Sets the API key, then requests the generation of an image that matches the provided text description.
+- **Parameters**:
+  - `MyApiKey` (string): Your OpenAI API key.
+  - `"A white Siamese cat"` (string): Text description of the image to generate.
+- **Returns**: The URL of the generated image.
+- **Example**: 
+  ```csharp
+  var imageUrl = await openAIImageGenerator.GenerateImageAsync("A white Siamese cat");
+  Console.WriteLine("Generated Image URL:");
+  Console.WriteLine(imageUrl);
+ 
+
+### OpenAIVisionApi Usage
+
+ 
+#### 🚀 Function: `DescribeImageAsync`
+- **Summary**: Describes the content of an image using OpenAI's vision API.
+- **Details**: After setting the API key and specifying the image path, this method analyzes the image and returns a descriptive text of its content.
+- **Parameters**:
+  - `MyApiKey` (string): Your OpenAI API key.
+  - `MyImagePath` (string): The file path to the image you want described.
+- **Returns**: A descriptive text of the image content.
+- **Example**: 
+  ```csharp
+  var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
+  Console.WriteLine("Description:");
+  Console.WriteLine(description);
+ 
+
+### OpenAITextToText Usage
+
+ 
+#### 🚀 Function: `SendPrompt`
+- **Summary**: Sends a text prompt to OpenAI's text-to-text API and returns the response.
+- **Details**: Sets the API key, then sends a specified prompt to the API. Useful for querying information or generating text based on a prompt.
+- **Parameters**:
+  - `MyApiKey` (string): Your OpenAI API key.
+  - `"how many states are in the United States of America?"` (string): The prompt to send to the API.
+- **Returns**: The API's text response to the prompt.
+- **Example**: 
+  ```csharp
+  var response = await openAITextToText.SendPrompt("how many states are in the United States of America?");
+  Console.WriteLine(response);
+ 
+
+### OpenAITextToTextStream Usage
+
+ 
+#### 🚀 Function: `StreamChatCompletionAsync`
+- **Summary**: Streams responses from OpenAI's Chat API based on a given prompt.
+- **Details**: After setting the API key, this method initiates a streaming session with the Chat API to continuously receive and process responses based on the input prompt.
+- **Parameters**:
+  - `MyApiKey` (string): Your OpenAI API key.
+  - `"list all animals in the same family as the cow"` (string): The prompt to stream chat completions for.
+- **Returns**: N/A (The method streams data and outputs to the console).
+- **Example**: 
+  ```csharp
+  await openAITextToTextStream.StreamChatCompletionAsync("list all animals in the same family as the cow");
+
+
 
 ### Running the Application
 
