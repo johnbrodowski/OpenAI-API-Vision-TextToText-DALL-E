@@ -12,6 +12,9 @@ public class Program
     private static OpenAIImageGenerator _imageGenerator = new OpenAIImageGenerator();
     private static OpenAIVisionService openAIVisionApi = new OpenAIVisionService();
     private static OpenAITextToText openAITextToText = new OpenAITextToText();
+
+
+    
     static async Task Main(string[] args)
     {
         string MyApiKey = "<YOUR API KEY>";
