@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 
+
 //using System;
 //using System.IO;
 //using System.Net.Http;
@@ -18,35 +19,46 @@ using Newtonsoft.Json;
 
 //public class Program
 //{
-//    private static OpenAIVisionService _openAIVisionService = new OpenAIVisionService();
-
+//    private static OpenAIVisionService openAIVisionApi = new OpenAIVisionService();
 //    static async Task Main(string[] args)
 //    {
-
 //        // Assign values to properties
-//        _openAIVisionService.ApiKey = "<YOUR API KEY>";
-//        _openAIVisionService.ImagePath = @"C:\<PATH TO YOUR IMAGE HERE>\image.jpg";
-
+//        string MyApiKey = "<YOUR API KEY>";
+//        string MyImagePath = @"c:\<YOUR IMAGE PATH HERE>\Image.jpg";
+//        // Assign values to properties
+//        openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
+//        openAIVisionApi.ImagePath = MyImagePath;
 //        // Now that the properties are set, you can call the method
-//        var description = await _openAIVisionService.DescribeImageAsync("what do you see in this picture");
+//        var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
 //        Console.WriteLine("Description:");
 //        Console.WriteLine(description);
- 
-
 //    }
-  
 //}
+
+
 
 
 public class OpenAIVisionService
 {
-    public string ApiKey { get; set; }
+    private string ApiKey { get; set; }
     public string ImagePath { get; set; }
 
     public OpenAIVisionService()
     {
         // Default constructor without parameters
     }
+
+    private string _apiKey;
+
+    public void SetApiKeyAndAuthenticate(string apiKey)
+    {
+        if (string.IsNullOrWhiteSpace(apiKey))
+            throw new ArgumentException("API key cannot be null or whitespace.", nameof(apiKey));
+        ApiKey = apiKey;
+
+    }
+
+
 
     public async Task<string> DescribeImageAsync(string questionToAsk)
     {
