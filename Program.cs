@@ -12,6 +12,7 @@ public class Program
     private static OpenAIImageGenerator _imageGenerator = new OpenAIImageGenerator();
     private static OpenAIVisionService openAIVisionApi = new OpenAIVisionService();
     private static OpenAITextToText openAITextToText = new OpenAITextToText();
+    private static OpenAIChatStreamService openAITextToTextStream = new OpenAIChatStreamService();
 
 
     
@@ -32,20 +33,29 @@ public class Program
         // Assign values to properties
         openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
         openAIVisionApi.ImagePath = MyImagePath;
-
         // Now that the properties are set, you can call the method
         var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
         Console.WriteLine("Description:");
         Console.WriteLine(description);
 
+        
          
         // Assign values to properties
         openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
-
         // Now that the properties are set, you can call the method
         var response = await openAITextToText.SendPrompt("how many states are in the United States of America?");
         Console.WriteLine(response);
 
+
+        
+        // Assign values to properties
+        openAITextToTextStream.SetApiKeyAndAuthenticate(MyApiKey);
+        //Now that the properties are set, you can call the method
+        await openAITextToTextStream.StreamChatCompletionAsync("list all animals in the same family as the cow");
+
+
+
+        
  
     }
 
