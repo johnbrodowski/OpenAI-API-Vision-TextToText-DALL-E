@@ -29,7 +29,7 @@ Before making any API requests, it's essential to authenticate with the OpenAI A
 
 ```csharp
 string MyApiKey = "<YOUR API KEY>";
-_imageGenerator.SetApiKeyAndAuthenticate(MyApiKey);
+openAIImageGenerator.SetApiKeyAndAuthenticate(MyApiKey);
 openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
 openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
 ```
@@ -49,7 +49,7 @@ static async Task Main(string[] args)
     string MyApiKey = "<YOUR API KEY>";
     
     // Image Generation
-    var imageUrl = await _imageGenerator.GenerateImageAsync("A white Siamese cat");
+    var imageUrl = await openAIImageGenerator.GenerateImageAsync("A white Siamese cat");
     Console.WriteLine("Generated Image URL: " + imageUrl);
     
     // Vision Analysis
