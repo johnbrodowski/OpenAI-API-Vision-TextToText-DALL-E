@@ -22,7 +22,7 @@ The application is structured around three main service classes:
 - `OpenAIImageGenerator`
 - `OpenAIVisionService`
 - `OpenAITextToText`
-
+- `OpenAITextToTextStream`
 Each class is responsible for handling specific types of requests to the OpenAI API, abstracting the complexity of HTTP requests and response parsing.
 
 ### Authentication
@@ -34,6 +34,8 @@ string MyApiKey = "<YOUR API KEY>";
 openAIImageGenerator.SetApiKeyAndAuthenticate(MyApiKey);
 openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
 openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
+openAITextToTextStream.SetApiKeyAndAuthenticate(MyApiKey);
+ 
 ```
 
 ### Performing Operations
@@ -45,23 +47,43 @@ openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
 ### Usage Example
 
 ```csharp
+
+private static OpenAIImageGenerator openAIImageGenerator = new OpenAIImageGenerator();
+private static OpenAIVisionApi openAIVisionApi = new OpenAIVisionApi();
+private static OpenAITextToText openAITextToText = new OpenAITextToText();
+private static OpenAITextToTextStream openAITextToTextStream = new OpenAITextToTextStream();
+
 static async Task Main(string[] args)
 {
-    // Set API Key for each service
-    string MyApiKey = "<YOUR API KEY>";
+        // Set API Key for each service
+        string MyApiKey = "<YOUR API KEY>";
+        string MyImagePath = @"c:\<YOUR IMAGE PATH HERE>\Image.jpg";
     
-    // Image Generation
-    var imageUrl = await openAIImageGenerator.GenerateImageAsync("A white Siamese cat");
-    Console.WriteLine("Generated Image URL: " + imageUrl);
-    
-    // Vision Analysis
-    string MyImagePath = @"c:\<YOUR IMAGE PATH HERE>\Image.jpg";
-    var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
-    Console.WriteLine("Description: " + description);
-    
-    // Text-to-Text Processing
-    var response = await openAITextToText.SendPrompt("how many states are in the United States of America?");
-    Console.WriteLine(response);
+        // Assign values to properties
+        openAIImageGenerator.SetApiKeyAndAuthenticate(MyApiKey);
+        // Now that the properties are set, you can call the method
+        var imageUrl = await openAIImageGenerator.GenerateImageAsync("A white Siamese cat");
+        Console.WriteLine("Generated Image URL:");
+        Console.WriteLine(imageUrl);
+
+        // Assign values to properties
+        openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
+        openAIVisionApi.ImagePath = MyImagePath;
+        // Now that the properties are set, you can call the method
+        var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
+        Console.WriteLine("Description:");
+        Console.WriteLine(description);
+
+        // Assign values to properties
+        openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
+        // Now that the properties are set, you can call the method
+        var response = await openAITextToText.SendPrompt("how many states are in the United States of America?");
+        Console.WriteLine(response);
+
+        // Assign values to properties
+        openAITextToTextStream.SetApiKeyAndAuthenticate(MyApiKey);
+        //Now that the properties are set, you can call the method
+        await openAITextToTextStream.StreamChatCompletionAsync("list all animals in the same family as the cow");
 }
 ```
 
