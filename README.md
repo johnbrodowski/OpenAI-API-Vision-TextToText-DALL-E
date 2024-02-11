@@ -44,48 +44,6 @@ openAITextToTextStream.SetApiKeyAndAuthenticate(MyApiKey);
 - **Vision**: Provide an image path, and the service will describe what it sees.
 - **Text-to-Text**: Send a text prompt to receive a response based on the model's understanding.
 
-### Usage Example
-
-```csharp
-
-private static OpenAIImageGenerator openAIImageGenerator = new OpenAIImageGenerator();
-private static OpenAIVisionApi openAIVisionApi = new OpenAIVisionApi();
-private static OpenAITextToText openAITextToText = new OpenAITextToText();
-private static OpenAITextToTextStream openAITextToTextStream = new OpenAITextToTextStream();
-
-static async Task Main(string[] args)
-{
-        // Set API Key for each service
-        string MyApiKey = "<YOUR API KEY>";
-        string MyImagePath = @"c:\<YOUR IMAGE PATH HERE>\Image.jpg";
-    
-        // Assign values to properties
-        openAIImageGenerator.SetApiKeyAndAuthenticate(MyApiKey);
-        // Now that the properties are set, you can call the method
-        var imageUrl = await openAIImageGenerator.GenerateImageAsync("A white Siamese cat");
-        Console.WriteLine("Generated Image URL:");
-        Console.WriteLine(imageUrl);
-
-        // Assign values to properties
-        openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
-        openAIVisionApi.ImagePath = MyImagePath;
-        // Now that the properties are set, you can call the method
-        var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
-        Console.WriteLine("Description:");
-        Console.WriteLine(description);
-
-        // Assign values to properties
-        openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
-        // Now that the properties are set, you can call the method
-        var response = await openAITextToText.SendPrompt("how many states are in the United States of America?");
-        Console.WriteLine(response);
-
-        // Assign values to properties
-        openAITextToTextStream.SetApiKeyAndAuthenticate(MyApiKey);
-        //Now that the properties are set, you can call the method
-        await openAITextToTextStream.StreamChatCompletionAsync("list all animals in the same family as the cow");
-}
-```
 
 ## Getting Started
 
@@ -169,6 +127,52 @@ static async Task Main(string[] args)
 - **Example**: 
   ```csharp
   await openAITextToTextStream.StreamChatCompletionAsync("list all animals in the same family as the cow");
+
+
+
+
+### Usage Example
+
+```csharp
+
+private static OpenAIImageGenerator openAIImageGenerator = new OpenAIImageGenerator();
+private static OpenAIVisionApi openAIVisionApi = new OpenAIVisionApi();
+private static OpenAITextToText openAITextToText = new OpenAITextToText();
+private static OpenAITextToTextStream openAITextToTextStream = new OpenAITextToTextStream();
+
+static async Task Main(string[] args)
+{
+        // Set API Key for each service
+        string MyApiKey = "<YOUR API KEY>";
+        string MyImagePath = @"c:\<YOUR IMAGE PATH HERE>\Image.jpg";
+    
+        // Assign values to properties
+        openAIImageGenerator.SetApiKeyAndAuthenticate(MyApiKey);
+        // Now that the properties are set, you can call the method
+        var imageUrl = await openAIImageGenerator.GenerateImageAsync("A white Siamese cat");
+        Console.WriteLine("Generated Image URL:");
+        Console.WriteLine(imageUrl);
+
+        // Assign values to properties
+        openAIVisionApi.SetApiKeyAndAuthenticate(MyApiKey);
+        openAIVisionApi.ImagePath = MyImagePath;
+        // Now that the properties are set, you can call the method
+        var description = await openAIVisionApi.DescribeImageAsync("what do you see in this picture");
+        Console.WriteLine("Description:");
+        Console.WriteLine(description);
+
+        // Assign values to properties
+        openAITextToText.SetApiKeyAndAuthenticate(MyApiKey);
+        // Now that the properties are set, you can call the method
+        var response = await openAITextToText.SendPrompt("how many states are in the United States of America?");
+        Console.WriteLine(response);
+
+        // Assign values to properties
+        openAITextToTextStream.SetApiKeyAndAuthenticate(MyApiKey);
+        //Now that the properties are set, you can call the method
+        await openAITextToTextStream.StreamChatCompletionAsync("list all animals in the same family as the cow");
+}
+```
 
 
 
