@@ -5,7 +5,7 @@
 
 Some classes for basic use of OpenAI API for Vision, TextToText Generation and DALL-E TextToImage Generation.
 
-This repository contains a comprehensive C# application designed to interact with OpenAI's API for various service, including image generation, vision capabilities, and text-to-text transformations. Utilizing the robust capabilities of OpenAI, this application demonstrates how to seamlessly integrate AI-driven features into .NET applications.
+This repository contains classes to interact with OpenAI's API for various service, including image generation, vision capabilities, and text-to-text transformations. Utilizing the robust capabilities of OpenAI, this application demonstrates how to  integrate AI-driven features into .NET applications.
 
 ## Features
 
